@@ -68,41 +68,48 @@ namespace MyApplication
             int numberx = rnd.Next(1, 10);
 
             int counter = 0;
-            for (int b = 1; b < 11; b++)
+            try
             {
-
-
-                int numbery = rnd.Next(1, 10);
-                sameanswer = numberx + numbery;
-
-
-
-                Console.Write("Question " + b + ":" + "   ");
-                Console.WriteLine(numberx + " " + "+" + " " + numbery);
-                sameanswer = Convert.ToInt32(Console.ReadLine());
-
-                donkey = numberx + numbery;
-
-
-                if (sameanswer != donkey)
+                for (int b = 1; b < 11; b++)
                 {
-                    Console.WriteLine("incorrect");
-                    Console.WriteLine(" ");
-                    Console.WriteLine(numberx + numbery);
-                    numberx = donkey;
 
 
+                    int numbery = rnd.Next(1, 10);
+                    sameanswer = numberx + numbery;
+
+
+
+                    Console.Write("Question " + b + ":" + "   ");
+                    Console.WriteLine(numberx + " " + "+" + " " + numbery);
+                    sameanswer = Convert.ToInt32(Console.ReadLine());
+
+                    donkey = numberx + numbery;
+
+
+                    if (sameanswer != donkey)
+                    {
+                        Console.WriteLine("incorrect");
+                        Console.WriteLine(" ");
+                        Console.WriteLine(numberx + numbery);
+                        numberx = donkey;
+
+
+                    }
+                    else
+                    {
+                        numberx = donkey;
+                        Console.WriteLine("Correct");
+                        counter = counter + 1;
+                    }
                 }
-                else
-                {
-                    numberx = donkey;
-                    Console.WriteLine("Correct");
-                    counter = counter + 1;
-                }
-
-
-
             }
+
+            catch
+            {
+                Console.WriteLine("Invalid Input");
+            }
+
+
             Console.WriteLine("You got " + counter + " out of 10 questions correct");
             Console.ReadLine();
         }
