@@ -1,0 +1,114 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+
+namespace MyApplication
+{
+    public class MainClass
+    {
+        internal static void Main()
+        {
+
+            char choice;
+
+
+            do
+            {
+                Console.WriteLine("P4CS Mini Applications");
+                Console.WriteLine("----------------------");
+                Console.WriteLine("Please select an option:");
+                Console.WriteLine("1) Keep Counting");
+                Console.WriteLine("2) Square Root Calculator");
+                Console.WriteLine("3) Encrypt Text (Caesar Cipher)");
+                Console.WriteLine("4) Decrypt Text (Caesar Cipher)");
+                Console.WriteLine("9) Quit");
+
+
+
+
+                choice = (char)Console.Read();
+                if (choice == '9') break;
+
+
+            } while (choice < '1' | choice > '8' & choice != 'q');
+
+
+
+            Console.WriteLine("\n");
+
+            switch (choice)
+            {
+                case '1':
+                    Optionone();
+                    break;
+
+            }
+
+        }
+
+
+
+        static void Optionone()
+        {
+            Console.WriteLine("Keep Counting");
+            Console.WriteLine("--------------");
+            Console.WriteLine("You will be presented with 10 arithmetic questions.");
+            Console.WriteLine("After the first question, the left-hand operand is the result of the previous addition.");
+            Console.WriteLine(" ");
+            //       Random symb = new Random();
+            //     int symbol = symb.Next(-1, +1);
+
+            int sameanswer = 0;
+            //         bool onlyOnce = false;          i might need it for when wrong
+            Random rnd = new Random();
+            int donkey = 0;
+            int numberx = rnd.Next(1, 10);
+
+            int counter = 0;
+            for (int b = 1; b < 11; b++)
+            {
+
+
+                int numbery = rnd.Next(1, 10);
+                sameanswer = numberx + numbery;
+
+
+
+                Console.Write("Question " + b + ":" + "   ");
+                Console.WriteLine(numberx + " " + "+" + " " + numbery);
+                sameanswer = Convert.ToInt32(Console.ReadLine());
+
+                donkey = numberx + numbery;
+
+
+                if (sameanswer != donkey)
+                {
+                    Console.WriteLine("incorrect");
+                    Console.WriteLine(" ");
+                    Console.WriteLine(numberx + numbery);
+                    numberx = donkey;
+
+
+                }
+                else
+                {
+                    numberx = donkey;
+                    Console.WriteLine("Correct");
+                    counter = counter + 1;
+                }
+
+
+
+            }
+            Console.WriteLine("You got " + counter + " out of 10 questions correct");
+            Console.ReadLine();
+        }
+
+
+
+    }
+}
+
