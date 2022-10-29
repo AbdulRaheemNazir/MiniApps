@@ -42,80 +42,126 @@ namespace MyApplication
             switch (choice)
             {
                 case '1':
-                    Optionone();
+                    //                    Optionone();
+                    break;
+                case '2':
+                    //                    Optiontwo();
+                    break;
+                case '3':
+                    Optionthree();
+                    break;
+                case '4':
+                    //                    Optionfour();
                     break;
 
             }
 
         }
 
-
-
-        static void Optionone()
+        public static char cipher(char ch, int key)
         {
-            Console.WriteLine("Keep Counting");
-            Console.WriteLine("--------------");
-            Console.WriteLine("You will be presented with 10 arithmetic questions.");
-            Console.WriteLine("After the first question, the left-hand operand is the result of the previous addition.");
-            Console.WriteLine(" ");
-            //       Random symb = new Random();
-            //     int symbol = symb.Next(-1, +1);
 
-            int sameanswer = 0;
-            //         bool onlyOnce = false;          i might need it for when wrong
-            Random rnd = new Random();
-            int donkey = 0;
-            int numberx = rnd.Next(1, 10);
-
-            int counter = 0;
-            try
+            if (!char.IsLetter(ch))
             {
-                for (int b = 1; b < 11; b++)
+
+                return ch;
+            }
+
+            char d = char.IsUpper(ch) ? 'A' : 'a';
+            return (char)((((ch + key) - d) % 26) + d);
+
+
+
+
+
+        }
+
+
+        public static string Encipher(string input, int key)
+        {
+            string output = string.Empty;
+
+            if (output == string.Empty) ;
+            {
+                //     Console.WriteLine("Invalid Input");
+            }
+
+
+            foreach (char ch in input)
+                output += cipher(ch, key);
+
+
+            return output;
+
+
+
+
+        }
+
+
+        static void Optionthree()
+        {
+
+            bool check = false;
+
+            Console.WriteLine("Type a string to encrypt:");
+            string UserString = Console.ReadLine();
+
+            for (int i = 0; i < UserString.Length; i++)
+            {
+                if (UserString[i] >= 'a' && UserString[i] <= 'z' || UserString[i] == ' ')
                 {
-
-
-                    int numbery = rnd.Next(1, 10);
-                    sameanswer = numberx + numbery;
-
-
-
-                    Console.Write("Question " + b + ":" + "   ");
-                    Console.WriteLine(numberx + " " + "+" + " " + numbery);
-                    sameanswer = Convert.ToInt32(Console.ReadLine());
-
-                    donkey = numberx + numbery;
-
-
-                    if (sameanswer != donkey)
-                    {
-                        Console.WriteLine("incorrect");
-                        Console.WriteLine(" ");
-                        Console.WriteLine(numberx + numbery);
-                        numberx = donkey;
-
-
-                    }
-                    else
-                    {
-                        numberx = donkey;
-                        Console.WriteLine("Correct");
-                        counter = counter + 1;
-                    }
+                    check = true;
+                    continue;
                 }
-            }
+                else
+                {
+                    check = false;
+                    Console.Write("Invalid Input");
+                    break;
+                }
 
-            catch
+            }
+            if (check == false)
             {
-                Console.WriteLine("Invalid Input");
+                UserString = Console.ReadLine();
+
             }
 
 
-            Console.WriteLine("You got " + counter + " out of 10 questions correct");
-            Console.ReadLine();
+
+
+
+            Console.WriteLine("\n");
+
+            Console.Write("Enter your Key");
+            int key = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("\n");
+
+
+            if (key < 1)
+                //          Console.WriteLine("Invalid Input");
+                Console.WriteLine("____");
+
+            else if (key >= 36)
+                //        Console.WriteLine("Invalid Input");
+
+
+
+
+                Console.WriteLine("Encrypted Data");
+
+            string cipherText = Encipher(UserString, key);
+            Console.WriteLine(cipherText);
+            Console.Write("\n");
+
+
+
+            Console.ReadKey();
+
         }
 
 
 
     }
 }
-
