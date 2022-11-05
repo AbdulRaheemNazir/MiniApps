@@ -116,10 +116,6 @@ namespace MyApplication
                 UserString = Console.ReadLine();
             }
 
-            else
-                Console.WriteLine("Invalid");
-
-
 
 
             Console.WriteLine("\n");
