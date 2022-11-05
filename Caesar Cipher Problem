@@ -79,24 +79,20 @@ namespace MyApplication
             return output;
         }
 
-        
-        public static void Method3()
-        {
 
-            Regex r = new Regex("^[a-zA-Z ]+$");
-            if (r.IsMatch(UserString)) ;
-            {
-               
-            }
-        }
-        
 
-        public static void Optionthree()
+        static void Optionthree()
         {
             bool check = false;
             Console.WriteLine("Type a string to encrypt:");
             string UserString = Console.ReadLine();
-            Method3();
+
+            Regex r = new Regex("^[a-zA-Z ]+$");
+            if (r.IsMatch(UserString))
+            {
+
+
+            }
 
             for (int i = 0; i < UserString.Length; i++)
             {
@@ -116,6 +112,13 @@ namespace MyApplication
                 UserString = Console.ReadLine();
             }
 
+            else
+            {
+                Console.WriteLine("Invalid");
+                Optionthree();
+            }
+
+
 
 
             Console.WriteLine("\n");
@@ -127,12 +130,6 @@ namespace MyApplication
                 Console.WriteLine(cipherText);
                 Console.Write("\n");
                 Console.ReadKey();
-
-
-
-
             }
         }
     }
-
-
