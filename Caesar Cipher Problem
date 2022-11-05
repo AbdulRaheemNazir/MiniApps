@@ -1,0 +1,139 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Text.RegularExpressions;
+using System.Threading.Tasks;
+
+
+namespace MyApplication
+{
+    public class MainClass
+    {
+        internal static void Main()
+        {
+
+            char choice;
+
+
+            do
+            {
+                Console.WriteLine("P4CS Mini Applications");
+                Console.WriteLine("----------------------");
+                Console.WriteLine("Please select an option:");
+                Console.WriteLine("1) Keep Counting");
+                Console.WriteLine("2) Square Root Calculator");
+                Console.WriteLine("3) Encrypt Text (Caesar Cipher)");
+                Console.WriteLine("4) Decrypt Text (Caesar Cipher)");
+                Console.WriteLine("9) Quit");
+
+
+
+
+                choice = (char)Console.Read();
+                if (choice == '9') break;
+
+
+            } while (choice < '1' | choice > '8' & choice != 'q');
+
+
+
+            Console.WriteLine("\n");
+
+            switch (choice)
+            {
+                case '1':
+                    //                    Optionone();
+                    break;
+                case '2':
+                    //                    Optiontwo();
+                    break;
+                case '3':
+                    Optionthree();
+                    break;
+                case '4':
+                    //                    Optionfour();
+                    break;
+
+            }
+
+        }
+
+
+        public static char cipher(char ch, int key)
+        {
+            if (!char.IsLetter(ch))
+            {
+
+                return ch;
+            }
+            char d = char.IsUpper(ch) ? 'A' : 'a';
+            return (char)((((ch + key) - d) % 26) + d);
+        }
+
+        public static string Encipher(string input, int key)
+        {
+            string output = string.Empty;
+            foreach (char ch in input)
+                output += cipher(ch, key);
+            return output;
+        }
+
+        static void Optionthree()
+        {
+            bool check = false;
+            Console.WriteLine("Type a string to encrypt:");
+            string UserString = Console.ReadLine();
+
+            bool IsAlphabets(string UserString)
+            {
+                Regex r = new Regex("^[a-zA-Z ]+$");
+                if (r.IsMatch(UserString))
+                    return true;
+                else
+                    return false;
+                    Console.WriteLine("Invalid");
+                    Optionthree();
+
+
+            }
+
+            for (int i = 0; i < UserString.Length; i++)
+            {
+                if (UserString[i] >= 'a' && UserString[i] <= 'z' || UserString[i] == ' ')
+                {
+                    check = true;
+                    continue;
+                }
+                else
+                {
+                    check = false;
+                    break;
+                }
+            }
+            if (check == false)
+            {
+                UserString = Console.ReadLine();
+            }
+
+            Console.WriteLine("\n");
+            Console.Write("Enter your Key");
+            int key = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("\n");
+            Console.WriteLine("Encrypted Data");
+            string cipherText = Encipher(UserString, key);
+            Console.WriteLine(cipherText);
+            Console.Write("\n");
+            Console.ReadKey();
+
+
+
+
+
+        }
+    }
+}
+
+
+
+
