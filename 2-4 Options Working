@@ -46,7 +46,7 @@ namespace MyApplication
                     //                    Optionone();
                     break;
                 case '2':
-                    //                    Optiontwo();
+                    Optiontwo();
                     break;
                 case '3':
                     Optionthree();
@@ -134,6 +134,53 @@ namespace MyApplication
 
 
         /*Options*/
+
+        static void Optiontwo()
+        {
+            try
+            {
+                int number;
+                Console.WriteLine("Enter a whole, positive number: ");
+                number = Convert.ToInt32(Console.ReadLine());
+
+                int shift2;
+                Console.WriteLine("Enters the number of decimal places for the precision square root result (Range 1-->6): ");
+                shift2 = Convert.ToInt32(Console.ReadLine());
+
+
+
+
+                double root = 1;
+                int i = 0;
+                //The Babylonian Method for Computing Square Roots
+                while (true)
+                {
+                    i = i + 1;
+                    root = (number / root + root) / 2;
+                    if (i == number + 1) { break; }
+                }
+
+
+
+
+                //Output
+                double shift3;
+                shift3 = Math.Round((double)root, shift2, MidpointRounding.ToEven);
+                Console.WriteLine("Square root:" + shift3);
+
+                Console.ReadLine();
+
+
+            }
+
+
+            catch
+            {
+                Console.WriteLine("Invalid Input");
+            }
+        }
+  
+
 
 
         static void Optionthree()
