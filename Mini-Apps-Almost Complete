@@ -18,6 +18,7 @@ namespace MyApplication
 
             do
             {
+                Console.WriteLine(" ");
                 Console.WriteLine("P4CS Mini Applications");
                 Console.WriteLine("----------------------");
                 Console.WriteLine("Please select an option:");
@@ -26,7 +27,7 @@ namespace MyApplication
                 Console.WriteLine("3) Encrypt Text (Caesar Cipher)");
                 Console.WriteLine("4) Decrypt Text (Caesar Cipher)");
                 Console.WriteLine("9) Quit");
-
+                Console.WriteLine(" ");
 
 
 
@@ -171,8 +172,7 @@ namespace MyApplication
 
                 if (sameanswer != donkey)
                 {
-                    Console.WriteLine("incorrect");
-                    Console.WriteLine(" ");
+                    Console.Write("INCORRECT: ANSWER IS ");
                     Console.WriteLine(numberx + numbery);
                     numberx = donkey;
 
@@ -302,3 +302,4 @@ namespace MyApplication
 
     }
 }
+
