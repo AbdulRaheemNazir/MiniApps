@@ -1,0 +1,454 @@
+                                                                                           /*Abdul Raheem Nazir - Mini Apps*/
+
+
+//These are NameSpaces that are used to provide different functions:
+using System;                                                                                     //A NameSpace used for .NET Freamework. Without thtis we can't use Console.WriteLine(); so this NameSpace is Essential
+using System.Collections.Generic;                                                                 //Used for working with lists
+using System.Linq;                                                                                //Used for working with data
+using System.Text;                                                                                //Used for working with text and coding
+using System.Threading.Tasks;                                                                     //Used to build multi-threadal applications
+using System.Text.RegularExpressions;                                                             //Used to determine whether a string matches to a regular expression pattern (such as the alphabet)
+/*
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+*///This is the Menu
+
+
+namespace MyApplication                                                                           //Organisess and holds your code within that NameSpace (MyApplication)
+{
+    public class MainClass                                                                        //This is a class which is a container for the program code
+    {
+        internal static void Main()                                                               //This is the entry point of the Program, so code will start excecuting from here
+        {
+            char choice;                                                                          //Declares that a single character is required to choose a option 
+            do                                                                                    //This is a do while loop and will execute the code block once, before checking if the condition is true,then will repeat as long as condition is true
+            {
+
+                Console.WriteLine(" ");                                                          //Displaying a whitespace so that if the User enters incorrectly and the menu is shown again it is visually easier for the user to understand
+                Console.WriteLine("P4CS Mini Applications");                                     //Displaying the title of the applications
+                Console.WriteLine("----------------------");                                     //Displaying numerous of dashes to distinguish the title from the options
+                Console.WriteLine("Please select an option:");                                   //Displaying text to the User, asking he/she to select a option 
+                Console.WriteLine("1) Keep Counting");                                           //Displaying what Option 1 is
+                Console.WriteLine("2) Square Root Calculator");                                  //Displaying what Option 2 is
+                Console.WriteLine("3) Encrypt Text (Caesar Cipher)");                            //Displaying what Option 3 is
+                Console.WriteLine("4) Decrypt Text (Caesar Cipher)");                            //Displaying what Option 4 is
+                Console.WriteLine("9) Quit");                                                    //Displaying what Option 9 is
+                Console.WriteLine(" ");                                                          //Displaying a whitespace so that if the User enters a option it is displayed seperatly from the menu
+
+                choice = Console.ReadKey().KeyChar;                                              //I declared a variable called choice and made it equal to Console.ReadKey().KeyChar which reads the first character and show it on the console but without waiting for the Enter key to press.
+                if (choice == '9') break;                                                        //This if statemnt is implying that if the users input (choice) is 9 then break (exit menu)
+
+            } while (choice < '1' | choice > '8' & choice != 'q');                               //While loop
+            Console.WriteLine(" ");                                                              //Displaying a whitespace
+
+            switch (choice)                                                                      //Switch Statement
+            {
+                case '1':                                                                        //if the character 1 is typed
+                    Optionone();                                                                 //Calling a method which is Optionone
+                    break;                                                                       //break statement
+                case '2':                                                                        //if the character 2 is typed
+                    Optiontwo();                                                                 //Calling a method which is Optiontwo
+                    break;                                                                       //break statement
+                case '3':                                                                        //if the character 3 is typed
+                    Optionthree();                                                               //Calling a method which is Optionthree
+                    break;                                                                       //break statement
+                case '4':                                                                        //if the character 4 is typed
+                    Optionfour();                                                                //Calling a method which is Optionfour
+                    break;                                                                       //break statement
+            }
+        }
+
+
+/*
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+*///These are the Options       
+//Option One  
+
+
+        static void Optionone()                                                                                                                                 //This is a method and the method is called Optionone
+        {
+                Console.WriteLine("Keep Counting");                                                                                                             //Displaying what Option 1 is
+                Console.WriteLine("--------------");                                                                                                            //Displaying numerous of dashes to distinguish the options from the instructions
+                Console.WriteLine("You will be presented with 10 arithmetic questions.");                                                                       //Displaying Option 1 Instructions
+                Console.WriteLine("After the first question, the left-hand operand is the result of the previous addition.");                                   //Displaying Option 1 Instructions
+                Console.WriteLine(" ");                                                                                                                         //Displaying a whitespace so that if the User enters a option it is displayed seperatly from the menu
+
+                int sameanswer = 0;                                                                                                                             //Declaring a variable and setting it to zero
+                Random rnd = new Random();                                                                                                                      //Declaring a variable to be randome using the Random function
+                int thesum = 0;                                                                                                                                 //Declaring a variable (which is a integer) and setting it to zero
+                int numberx = rnd.Next(0, 10);                                                                                                                  //Declaring a variable (which is a integer) and setting it to random number between 0 and 10
+                int counter = 0;                                                                                                                                //Declaring a varaible (which is a integer) and setting it to zero
+
+                for (int b = 1; b < 11; b++)                                                                                                                    //A for loop which defines b as 0 and if b is less than 10 then increase b until it reaches 10
+                {
+                    try                                                                                                                                             //Everything in try will be run however if there are issues the catch will deal with it
+                    {
+                        int numbery = rnd.Next(0, 10);                                                                                                              //Declaring a variable (which is a integer) and setting it to random number between 0 and 10
+                        sameanswer = numberx + numbery;                                                                                                             //Changing the vairable sameanswer from 0 to whatever is the sum of numberx and numbery
+
+                        Console.Write("Question " + b + ":" + "   ");                                                                                               //Display the word Question and b (which is the question number) and don't start on a new line as it is Console.Write
+                        Console.WriteLine(numberx + " " + "+" + " " + numbery);                                                                                     //Display the Question
+                        sameanswer = int.Parse(Console.ReadLine());                                                                                                 //Declaring a variable which is called sameanswer which is the user input
+                        Console.WriteLine(" ");                                                                                                                     //Displaying a whitespace for the next question
+                        thesum = numberx + numbery;                                                                                                                 // Declaring a varaible which is the total of numberx + numbery
+
+
+                        if (sameanswer == thesum)                                                                                                                   //If sameanswer is equivalent to thesum which is the user input and the actauly answer then do the follwoing code 
+                        {
+                            numberx = thesum;                                                                                                                       //Now when the forloop is repeated the answer will be the first number displayed in the next question so no longer random
+                            Console.WriteLine("Correct");                                                                                                           //Displaying to the user he has got the answer correct
+                            counter = counter + 1;                                                                                                                  //The counter will gain 1 for getting rhe question right
+                        }
+
+                        else                                                                                                                                        //Else Statement
+                        {
+                            Console.Write("INCORRECT: ANSWER IS ");                                                                                                 //Display to the user it is the incorrect answer and dont start on a new line
+                            Console.WriteLine(numberx + numbery);                                                                                                   //Display the actual answer
+                            numberx = thesum;                                                                                                                       //When the forloop is repeated the answer will be the first number displayed in the next question so no longer random
+                        }
+                    }
+
+                    catch                                                                                                                                           //If there are any errors present that the program isn't told how to react it will go the catch
+                    {
+                        Console.WriteLine("Invalid Number");                                                                                                        //Display a Error Message
+                        Optionone();                                                                                                                                //Calling a method which is Optionone
+                    }
+
+                }
+                Console.WriteLine("You got " + counter + " out of 10 questions correct");                                                                       //Display at the end how many questions the user got right out of 10
+                Console.ReadLine();                                                                                                                             //Getting the user input from the last statement and program will end here
+        }
+
+
+        /*
+        ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+        ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+        */
+        //Option Two  
+        static void Optiontwo()
+        {
+            try
+            {
+
+                Console.WriteLine("Square Root Calculator: ");
+                Console.WriteLine("----------------------");
+                Console.WriteLine("Please enter a positive number: ");
+                int number = int.Parse(Console.ReadLine());
+
+                bool validinteger = true;
+                do
+                {
+
+                    validinteger = true;
+                    Console.WriteLine("How many decimal places do you want the solution calculated to: ");
+                    int numberofdecimalplaces = int.Parse(Console.ReadLine());
+                    double upperbound = 0;
+                    double startnumber = 1; // number to start counting p at
+
+                    if (numberofdecimalplaces > 0 && numberofdecimalplaces < 7)
+                    {
+                        validinteger = true;
+
+                        while (startnumber < number) // checks if startnumber is greater than the number being square rooted
+                        {
+                            upperbound = upperbound + 1; // adds 1 to the original number
+                            startnumber = upperbound * upperbound; // squares original number
+
+                        }
+
+                        double lowerbound = upperbound - 1; // finds lowerbound
+                        double avrgbound = (lowerbound + upperbound) / 2; // finds average
+                        while (upperbound - lowerbound >= 0.000001)
+                        { // checks what the difference between the bounds is to six decimal places as that is the most precise you can go
+                            if (avrgbound * avrgbound > number)
+                            {
+                                upperbound = upperbound - (upperbound - lowerbound) / 2; // decreasing the number
+                                avrgbound = (lowerbound + upperbound) / 2;
+
+
+                            }
+                            else
+                            {
+                                lowerbound = lowerbound + (upperbound - lowerbound) / 2; // increasing the number
+                                avrgbound = (lowerbound + upperbound) / 2;
+
+                            }
+                        }
+                        decimal aver = Convert.ToDecimal((upperbound + lowerbound) / 2);
+                        decimal roundednumber = decimal.Round(aver, numberofdecimalplaces); // puts number to the correct number of decimal places
+
+                        Console.WriteLine(roundednumber); // prints the squarerooted nuber
+                    }
+
+
+                    else
+                    {
+                        validinteger = false;
+                        Console.WriteLine("Please enter a valid decimal");
+                    }
+                } while (!validinteger);
+
+            }
+
+            catch
+            {
+                Console.WriteLine("Youd did not enter a valid Integer. Please try again");
+                Optiontwo();
+            }
+
+        }
+    
+
+
+
+    /*Test plan for the Square Root Calculator
+    This test plan includes inputs, expected outputs, actual outputs, and is sufficient to ensure the code is tested to a suitable level.
+
+    Inputs
+    1) Square root of 12 (3d.p)
+    2)Square root of 29 (6d.p)
+    3)Square root of 37 (1d.p)
+    4)Square root of 25 (5d.p)
+    5)Square root of 99999 (3d.p)
+    6)Square root of 55 (7d.p)
+    7)Square root of 24 (0d.p)
+    8)Square root of 11 (-3d.p)
+    9)Square root of 33 (abc d.p)
+    10)Square root of -99 (-3d.p)
+    11)Square root of abc (3d.p)
+    12)Square root of 0 (3d.p)
+
+    Expected Outputs
+    1)3.464
+    2)5.385165
+    3)6.1
+    4)25.00000
+    5)316.226
+    6)This should be in the range of 1 to 6 decimal places. Please start again
+    7)This should be in the range of 1 to 6 decimal places. Please start again
+    8)This should be in the range of 1 to 6 decimal places. Please start again
+    9)This should be in the range of 1 to 6 decimal places. Please start again
+    10)This should be in the range of 1 to 6 decimal places. Please start again
+    11)Invalid Input. Please start again
+    12)0.000
+
+    Actual Outputs
+    1)
+    2)
+    3)
+    4)
+    5)
+    6)
+    7) 
+    8)
+    9)
+    10)
+    11)
+    12)
+
+     */
+
+    /*
+    ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    */
+    //Option Three  
+
+    static void Optionthree()                                                                                                                     
+        {
+
+
+
+            bool validstring = true;
+            do
+            {
+                Console.WriteLine("Encrypt Text");
+                Console.WriteLine("------------");
+                Console.WriteLine("Please enter text to encrypt: ");                                                                                                
+                string UserString = Console.ReadLine();                                                                                                   
+                Regex r = new Regex("^[a-zA-Z ]+$");
+                validstring = true;
+
+                if (r.IsMatch(UserString))                                                                                                                    
+                {
+                    bool validshift = true;
+                    do
+                    {
+                        Console.WriteLine(" ");                                                                                                                
+                        Console.Write("Please enter shift (between 1 and 36)");                                                                                                 
+                        int key = Convert.ToInt32(Console.ReadLine());                                                                           
+                        Console.WriteLine(" ");
+
+                        if (key > 0 && key < 37)                                                                                                
+                        {
+                           Console.WriteLine("Encrypted Data");                                                                              
+                           string cipherText = Encipher(UserString, key);                                                                                  
+                           Console.WriteLine(cipherText);                                                                                                      
+                           validshift = true;
+                           Console.ReadLine();                                                                                                                 
+                        }
+
+                        else
+                        {
+                            validshift = false;
+                            Console.WriteLine("Invalid shift amount");
+                        }
+
+                        } while (!validshift);
+                }
+
+                else                                                                                                                    
+                {
+                    Console.WriteLine("Invalid input text");       
+                    Optionthree();                                                                                                                                
+                }
+
+            } while (!validstring);
+
+        }
+
+
+
+/*
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+*/
+//Option Four
+
+
+        static void Optionfour()                                                                                                                     
+        {
+
+
+
+            bool validstring = true;
+            do
+            {
+                Console.WriteLine("Decrypt Text");
+                Console.WriteLine("------------");
+                Console.WriteLine("Please enter text to decrypt:");                                                                                                
+                string UserString = Console.ReadLine();                                                                                                   
+                Regex r = new Regex("^[a-zA-Z ]+$");
+                validstring = true;
+
+                if (r.IsMatch(UserString))                                                                                                                    
+                {
+                    bool validshift = true;
+                    do
+                    {
+                        Console.WriteLine(" ");                                                                                                                
+                        Console.Write("Please enter shift (between 1 and 36)");                                                                                                 
+                        int key = Convert.ToInt32(Console.ReadLine());                                                                           
+                        Console.WriteLine(" ");
+
+                        if (key > 0 && key < 37)                                                                                                
+                        {
+                           Console.WriteLine("Encrypted Data");                                                                              
+                           string cipherText = Decipher(UserString, key);                                                                                  
+                           Console.WriteLine(cipherText);                                                                                                      
+                           validshift = true;
+                           Console.ReadLine();                                                                                                                 
+                        }
+
+                        else
+                        {
+                            validshift = false;
+                            Console.WriteLine("Invalid shift amount");
+                        }
+
+                        } while (!validshift);
+                }
+
+                else                                                                                                                    
+                {
+                    Console.WriteLine("Invalid input text");       
+                    Optionfour();                                                                                                                                
+                }
+
+            } while (!validstring);
+
+        }
+
+
+
+/*
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+*/
+//Functions/Methods Used in the Caeser Ciphers Encryption/Decryption that are aren't arpart of the Menu
+
+
+
+        /*Used for the Decipher*/
+
+        public static string Decipher(string input, int key)         
+        {
+            string output = string.Empty;          
+            foreach (char ch in input)                                                 
+                output += cipher2(ch, key);                                               
+            output = output.ToUpper();
+            
+            return output;                               
+        }
+
+
+        public static char cipher2(char ch, int key)
+        {
+
+            char d = char.IsUpper(ch) ? 'A' : 'a';
+            return (char)(ch - key);
+        }
+
+
+
+
+        /*Used for the Encipher*/
+
+        public static string Encipher(string input, int key)         
+        {
+            string output = string.Empty;          
+            foreach (char ch in input)                                                 
+                output += cipher(ch, key);                                               
+            output = output.ToUpper();
+            
+            return output;                               
+        }
+
+
+        public static char cipher(char ch, int key)                                                                                           
+        {
+
+            char d = char.IsUpper(ch) ? 'A' : 'a';                                                                                             
+            return(char)(ch + key);                                                                                                 
+        }
+    }
+}
+/*
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------  
+*/
