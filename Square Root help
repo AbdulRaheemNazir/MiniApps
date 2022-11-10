@@ -1,0 +1,139 @@
+//These are NameSpaces that are used to provide different functions:
+using System;                                                                                     //A NameSpace used for .NET Freamework. Without thtis we can't use Console.WriteLine(); so this NameSpace is Essential
+using System.Collections.Generic;                                                              
+using System.Linq;                                                                            
+using System.Text;                                                                    
+using System.Threading.Tasks;                                                 
+using System.Text.RegularExpressions;                                                    
+/*
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+*///This is the Menu
+
+
+namespace MyApplication                                                              
+{
+    public class MainClass                                                      
+    {
+        internal static void Main()                                                              
+        {
+            char choice;                                       
+            do                                                                             
+            {
+
+                Console.WriteLine(" ");                                              
+                Console.WriteLine("P4CS Mini Applications");                               
+                Console.WriteLine("----------------------");                              
+                Console.WriteLine("Please select an option:");                                
+                Console.WriteLine("1) Keep Counting");                                  
+                Console.WriteLine("2) Square Root Calculator");                                 
+                Console.WriteLine("3) Encrypt Text (Caesar Cipher)");                         
+                Console.WriteLine("4) Decrypt Text (Caesar Cipher)");                         
+                Console.WriteLine("9) Quit");                                             
+                Console.WriteLine(" ");                                                     
+
+                choice = Console.ReadKey().KeyChar;                                           
+                if (choice == '9') break;                                                    
+
+            } while (choice < '1' | choice > '8' & choice != 'q');                         
+            Console.WriteLine(" ");                                                  
+
+            switch (choice)                                                     
+            {
+                case '1':                                                                     
+                                                                                                
+                    break;                                                                       
+                case '2':                                                                     
+                                                                                              
+                    break;                                                                     
+                case '3':                                                                
+
+                    break;                                                                  
+                case '4':                                                                        
+                    Optionfour();                                                           
+                    break;                                                      
+            }
+        }
+
+
+
+/*
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+*/
+        //Option Four
+
+
+        static void Optionfour()
+        {
+
+            try
+            {
+                Console.WriteLine("Square Root Calculator: ");
+                Console.WriteLine("----------------------");
+                Console.WriteLine("Please enter a positive number: ");
+                int number = int.Parse(Console.ReadLine());
+
+
+                bool validinteger = true;
+                Console.WriteLine("How many decimal places do you want the solution calculated to: ");
+                int numberofdecimalplaces = int.Parse(Console.ReadLine());
+                double upperbound = 0;
+                double startnumber = 1; // number to start counting p at
+
+
+
+                if (numberofdecimalplaces > 0 & numberofdecimalplaces < 7)
+                {
+
+                    while (startnumber < number) // checks if startnumber is greater than the number being square rooted
+                    {
+                        upperbound = upperbound + 1; // adds 1 to the original number
+                        startnumber = upperbound * upperbound; // squares original number
+
+
+
+                    }
+
+                    double lowerbound = upperbound - 1; // finds lowerbound
+                    double avrgbound = (lowerbound + upperbound) / 2; // finds average
+                    while (upperbound - lowerbound >= 0.000001)
+                    { // checks what the difference between the bounds is to six decimal places as that is the most precise you can go
+                        if (avrgbound * avrgbound > number)
+                        {
+                            upperbound = upperbound - (upperbound - lowerbound) / 2; // decreasing the number
+                            avrgbound = (lowerbound + upperbound) / 2;
+
+
+                        }
+                        else
+                        {
+                            lowerbound = lowerbound + (upperbound - lowerbound) / 2; // increasing the number
+                            avrgbound = (lowerbound + upperbound) / 2;
+
+                        }
+                    }
+                    decimal aver = Convert.ToDecimal((upperbound + lowerbound) / 2);
+                    decimal roundednumber = decimal.Round(aver, numberofdecimalplaces); // puts number to the correct number of decimal places
+
+                    Console.WriteLine(roundednumber); // prints the squarerooted nuber
+                }
+
+                else
+                {
+
+                    Console.WriteLine("Please enter a valid decimal");
+                }
+
+            }
+
+            catch
+            {
+                Console.WriteLine("Invalid");
+                Optionfour();
+            }
+        }
+
+    }
+}
