@@ -1,5 +1,3 @@
-
-//These are NameSpaces that are used to provide different functions:
 using System;                                                                                     //A NameSpace used for .NET Freamework. Without thtis we can't use Console.WriteLine(); so this NameSpace is Essential
 using System.Collections.Generic;                                                                 //Used for working with lists
 using System.Linq;                                                                                //Used for working with data
