@@ -94,19 +94,14 @@ namespace MyApplication                                                         
                     var sym = symbols[r.Next(0, 2)];
 
                     int numbery = rnd.Next(0, 10);                                                                                                              //Declaring a variable (which is a integer) and setting it to random number between 0 and 10
-                    sameanswer = numberx + int.Parse(sym) + numbery;                                                                                                              //Changing the vairable sameanswer from 0 to whatever is the sum of numberx and numbery
-
-
-
-
-
+                    sameanswer = numberx + sym + numbery;                                                                                                              //Changing the vairable sameanswer from 0 to whatever is the sum of numberx and numbery
 
                     Console.Write("Question " + b + ":" + "   ");                                                                                               //Display the word Question and b (which is the question number) and don't start on a new line as it is Console.Write
                     Console.WriteLine(numberx + " " + sym + " " + numbery);                                                                                     //Display the Question
                     sameanswer = int.Parse(Console.ReadLine());                                                                                                 //Declaring a variable which is called sameanswer which is the user input
                     Console.WriteLine(" ");                                                                                                                     //Displaying a whitespace for the next question
 
-                    thesum = numberx + int.Parse(sym) + numbery;                                                                                                                 // Declaring a varaible which is the total of numberx + numbery
+                    thesum = numberx + sym + numbery;                                                                                                                 // Declaring a varaible which is the total of numberx + numbery
 
 
                     if (sameanswer == thesum)                                                                                                                   //If sameanswer is equivalent to thesum which is the user input and the actauly answer then do the follwoing code 
@@ -119,7 +114,7 @@ namespace MyApplication                                                         
                     else                                                                                                                                        //Else Statement
                     {
                         Console.Write("INCORRECT: ANSWER IS ");                                                                                                 //Display to the user it is the incorrect answer and dont start on a new line
-                        Console.WriteLine(numberx + int.Parse(sym) + numbery);                                                                                                   //Display the actual answer
+                        Console.WriteLine(numberx + sym + numbery);                                                                                                   //Display the actual answer
                         numberx = thesum;                                                                                                                       //When the forloop is repeated the answer will be the first number displayed in the next question so no longer random
                     }
                 }
