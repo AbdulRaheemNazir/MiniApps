@@ -15,6 +15,7 @@ internal class Program
             Console.WriteLine("2) Square Root Calculator");
             Console.WriteLine("3) Encrypt Text (Caesar Cipher)");
             Console.WriteLine("4) Decrypt Text (Caesar Cipher)");
+            Console.WriteLine("5) New Square Root Calculator");
             Console.WriteLine("9) Quit");
 
             choice = Console.ReadKey().KeyChar;
@@ -40,6 +41,9 @@ internal class Program
                     break;
                 case '4':
                     Optionfour();
+                    break;
+                case '5':
+                    OptionFive();
                     break;
             }
         }
@@ -166,6 +170,64 @@ internal class Program
             Console.WriteLine("Invalid input.");
             Optionfour();
         }
+    }
+
+    static void OptionFive()
+    {
+        Console.WriteLine("Square Root Calculator: ");
+        Console.WriteLine("----------------------");
+        Console.WriteLine("Please enter a positive number: ");
+        int number = int.Parse(Console.ReadLine());
+
+        bool validinteger;
+
+        do
+        {
+            Console.WriteLine("How many decimal places do you want the solution calculated to: ");
+            int numberofdecimalplaces = int.Parse(Console.ReadLine());
+            double upperbound = 0d;
+            double startnumber = 1d; // number to start counting p at
+
+            if (numberofdecimalplaces > 0 & numberofdecimalplaces < 7)
+            {
+                validinteger = true;
+
+                while (startnumber < number) // checks if startnumber is greater than the number being square rooted
+                {
+                    upperbound = upperbound + 1d; // adds 1 to the original number
+                    startnumber = upperbound * upperbound; // squares original number
+
+                }
+
+                double lowerbound = upperbound - 1d; // finds lowerbound
+                double avrgbound = (lowerbound + upperbound) / 2d; // finds average
+                while (upperbound - lowerbound >= 0.000001)
+                { // checks what the difference between the bounds is to six decimal places as that is the most precise you can go
+                    if (avrgbound * avrgbound > number)
+                    {
+                        upperbound = upperbound - (upperbound - lowerbound) / 2; // decreasing the number
+                        avrgbound = (lowerbound + upperbound) / 2;
+
+
+                    }
+                    else
+                    {
+                        lowerbound = lowerbound + (upperbound - lowerbound) / 2; // increasing the number
+                        avrgbound = (lowerbound + upperbound) / 2;
+
+                    }
+                }
+                decimal aver = (decimal)((upperbound + lowerbound) / 2d);
+                decimal roundednumber = decimal.Round(aver, numberofdecimalplaces); // puts number to the correct number of decimal places
+
+                Console.WriteLine(roundednumber); // prints the squarerooted nuber
+            }
+            else
+            {
+                validinteger = false;
+                Console.WriteLine("Please enter a valid decimal");
+            }
+        } while (!validinteger);
     }
 
 
