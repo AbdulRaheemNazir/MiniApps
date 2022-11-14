@@ -1,0 +1,475 @@
+                                                                                                                      /*Abdul Raheem Nazir - Mini Apps*/
+
+
+
+//These are NameSpaces that are used to provide different functions:
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Text.RegularExpressions;
+/*
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+*///This is the Menu
+
+
+namespace MyApplication
+{
+    public class MainClass
+    {
+        internal static void Main()                                                                                                                                          //This is the entry point of the Program, so code will start excecuting from here
+        {
+            try
+            {
+                char menuchoice;                                                                                                                                            //Declaring a variable
+                do
+                {
+                    Console.WriteLine(" ");
+                    Console.WriteLine("P4CS Mini Applications");
+                    Console.WriteLine("----------------------");
+                    Console.WriteLine("Please select an option:");
+                    Console.WriteLine("1) Keep Counting");
+                    Console.WriteLine("2) Square Root Calculator");
+                    Console.WriteLine("3) Encrypt Text (Caesar Cipher)");
+                    Console.WriteLine("4) Decrypt Text (Caesar Cipher)");
+                    Console.WriteLine("9) Quit");
+                    Console.WriteLine(" ");
+
+                    menuchoice = Console.ReadKey().KeyChar;                                                                                                                //User input can only enter 1 characteras a option
+                    if (menuchoice == '9') break;                                                                                                                          //This if statemnt is implying that if the users input (choice) is 9 then break (exit menu)
+
+                } while (menuchoice < '1' | menuchoice > '4');                                                                                                             //While loop
+                Console.WriteLine(" ");
+
+                switch (menuchoice)                                                                                                                                       //Switch Statement
+                {
+                    case '1':
+                        Optionone();                                                                                                                                      //Calling a method which is Optionone
+                        break;
+                    case '2':
+                        Optiontwo();                                                                                                                                      //Calling a method which is Optiontwo
+                        break;
+                    case '3':
+                        Optionthree();                                                                                                                                    //Calling a method which is Optionthree
+                        break;
+                    case '4':
+                        Optionfour();                                                                                                                                     //Calling a method which is Optionfour
+                        break;
+                }
+            }
+            catch
+            {
+                Console.WriteLine("Invalid please try again");
+            }
+        }
+    
+
+/*
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+*///These are the Options       
+//Option One  
+
+
+        static void Optionone()      
+        {
+            Console.WriteLine(" ");
+            Console.WriteLine("Keep Counting");                            
+            Console.WriteLine("--------------");                                           
+            Console.WriteLine("You will be presented with 10 arithmetic questions.");                                   
+            Console.WriteLine("After the first question, the left-hand operand is the result of the previous addition.");         
+            Console.WriteLine(" ");   
+
+            Random rnd = new Random();                                                                                                                                  //Declaring a variable to be randome using the Random function
+
+            int firstrandomnumber = rnd.Next(0, 10);                                                                                                                    //Declaring a variable (which is a integer) and setting it to random number between 0 and 10
+            int questioncorrectcounter = 0;             
+            int correctanswer = 0;                 
+            int thesum = 0;                  
+
+            for (int b = 1; b < 11; b++)                                                                                                                               //A for loop which defines b as 0 and if b is less than 10 then increase b until it reaches 10
+            {
+                try                    
+                {
+                    int symbol = rnd.Next(0, 2); 
+                    int secondrandomnumber = rnd.Next(0, 10); 
+                    correctanswer = firstrandomnumber + secondrandomnumber;
+
+                    if (symbol == 0)
+                    {
+                        Console.Write("Question " + b + ":" + "   ");
+                        Console.WriteLine(firstrandomnumber + " " + "+" + " " + secondrandomnumber);       
+                        correctanswer = int.Parse(Console.ReadLine());                                                                                          
+                        Console.WriteLine(" ");               
+                        thesum = firstrandomnumber + secondrandomnumber; 
+
+                        if (correctanswer == thesum)                                                                                                               
+                        {
+                            firstrandomnumber = thesum;                                                                                                        
+                            Console.WriteLine("Correct");                                                                                        
+                            questioncorrectcounter = questioncorrectcounter + 1;                                                                         
+                        }
+
+                        else                                                                                                                 
+                        {
+                            Console.Write("INCORRECT: ANSWER IS ");                                                                                        
+                            Console.WriteLine(firstrandomnumber + secondrandomnumber);                                                
+                            firstrandomnumber = thesum;                                                                                  
+                        }
+
+                    }
+
+                    else
+                    {
+                        correctanswer = firstrandomnumber - secondrandomnumber;
+                        Console.Write("Question " + b + ":" + "   ");                                                                                            
+                        Console.WriteLine(firstrandomnumber + " " + "-" + " " + secondrandomnumber);                                                           
+                        correctanswer = int.Parse(Console.ReadLine());                                                                      
+                        Console.WriteLine(" ");                                                                                                    
+
+                        thesum = firstrandomnumber - secondrandomnumber;                                  
+
+
+                        if (correctanswer == thesum)                                                                                   
+                        {
+                            firstrandomnumber = thesum;                                                                 
+                            Console.WriteLine("Correct");
+                            questioncorrectcounter = questioncorrectcounter + 1;
+                        }
+
+                        else                                                                                                                          
+                        {
+                            Console.Write("INCORRECT: ANSWER IS ");                                                                                          
+                            Console.WriteLine(firstrandomnumber - secondrandomnumber);                                                                   
+                            firstrandomnumber = thesum;                                                    
+                        }
+                    }
+                }
+
+                catch                                                                                                                                    
+                {
+                    Console.WriteLine("Please start again. The program has assumed you would enter a valid input for the data type expected");        
+                    Optionone();                                                                                                                   
+                }
+            }
+            Console.WriteLine("You got " + questioncorrectcounter + " out of 10 questions correct");                                                    
+            Console.ReadLine();                                                                                                                     
+            Console.WriteLine("Which Mini Application would you like to run next (or exit the Mini Application)");
+            Main();
+        }
+  
+
+/*
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+*/
+//Option Two  
+
+
+/*Test plan for the Square Root Calculator
+This test plan includes inputs, expected outputs, actual outputs, and is sufficient to ensure the code is tested to a suitable level.
+
+        Inputs
+        1) Square root of 12 (3d.p)
+        2)Square root of 29 (6d.p)
+        3)Square root of 37 (1d.p)
+        4)Square root of 25 (5d.p)
+        5)Square root of 99999 (3d.p)
+        6)Square root of 55 (7d.p)
+        7)Square root of 24 (0d.p)
+        8)Square root of 11 (-3d.p)
+        9)Square root of 33 (abc d.p)
+        10)Square root of -99 (-3d.p)
+        11)Square root of abc (3d.p)
+        12)Square root of 0 (3d.p)
+
+        Expected Outputs
+        1)3.464
+        2)5.385165
+        3)6.1
+        4)25.00000
+        5)316.226
+        6)Please enter a valid decimal. This should be in the range of 1 to 6 decimal places.
+        7)Please enter a valid decimal. This should be in the range of 1 to 6 decimal places.
+        8)Please enter a valid decimal. This should be in the range of 1 to 6 decimal places.
+        9)Please enter a valid decimal. This should be in the range of 1 to 6 decimal places.
+        10)Please enter a valid decimal. This should be in the range of 1 to 6 decimal places.
+        11)You did not enter a valid Integer. Please try again
+        12)0.000
+
+        Actual Outputs
+        1)3.464
+        2)5.385165
+        3)6.1
+        4)25.00000
+        5)316.226
+        6)Please enter a valid decimal. This should be in the range of 1 to 6 decimal places.
+        7)Please enter a valid decimal. This should be in the range of 1 to 6 decimal places.
+        8)Please enter a valid decimal. This should be in the range of 1 to 6 decimal places.
+        9)Please enter a valid decimal. This should be in the range of 1 to 6 decimal places.
+        10)Please enter a valid decimal. This should be in the range of 1 to 6 decimal places.
+        11)You did not enter a valid Integer. Please try again
+        12)-1.000
+
+        In my Test Plan all my expected outputs matched my Actual output except number 12 where I try to do the Square root of zero to 3 decimal places,
+        which is zero, however my program displayed it as -1.000, in future I might make the program to have a special excpetion if the innput is zero
+*/
+
+
+
+        static void Optiontwo()
+        {
+            try
+            {
+                Console.WriteLine("Square Root Calculator: ");
+                Console.WriteLine("----------------------");
+                Console.WriteLine("Please enter a positive number: ");
+                int inputnumber = int.Parse(Console.ReadLine());
+
+                bool validinteger = true;
+                do
+                {
+                    validinteger = true;
+                    Console.WriteLine("How many decimal places do you want the solution calculated to: ");
+                    int inputdecimalplaces = int.Parse(Console.ReadLine());
+                    double upperbound = 0;
+                    double firstnumber = 1;
+
+                    if (inputdecimalplaces > 0 && inputdecimalplaces < 7)
+                    {
+                        while (firstnumber < inputnumber)
+                        {
+                            upperbound = upperbound + 1;
+                            firstnumber = upperbound * upperbound;
+                        }
+                        validinteger = true;
+                        double lowerbound = upperbound - 1;
+                        double boundaverage = (lowerbound + upperbound) / 2;
+                        while (upperbound - lowerbound >= 0.000001)
+                        {
+                            if (boundaverage * boundaverage > inputnumber)
+                            {
+                                upperbound = upperbound - (upperbound - lowerbound) / 2;
+                                boundaverage = (lowerbound + upperbound) / 2;
+                            }
+                            else
+                            {
+                                lowerbound = lowerbound + (upperbound - lowerbound) / 2;
+                                boundaverage = (lowerbound + upperbound) / 2;
+                            }
+                        }
+                        decimal average = Convert.ToDecimal((upperbound + lowerbound) / 2);
+                        decimal roundednumber = decimal.Round(average, inputdecimalplaces);
+                        Console.WriteLine(roundednumber);
+                        Console.WriteLine(" ");
+                        Console.WriteLine("Which Mini Application would you like to run next (or exit the Mini Application)");
+                        Main();
+                    }
+
+                    else
+                    {
+                        validinteger = false;
+                        Console.WriteLine("Please enter a valid decimal. This should be in the range of 1 to 6 decimal places.");
+                    }
+                } while (!validinteger);
+            }
+            catch
+            {
+                Console.WriteLine("You did not enter a valid Integer. Please try again");
+                Optiontwo();
+            }
+        }
+
+
+/*
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+*/
+//Option Three  
+
+
+        static void Optionthree()                                                                                                                     
+        {
+            bool validstring = true;
+            do
+            {
+                Console.WriteLine("Encrypt Text");
+                Console.WriteLine("------------");
+                Console.WriteLine("Please enter text to encrypt: ");                                                                                                
+                string inputmessage = Console.ReadLine();                                                                                                   
+                Regex i = new Regex("^[a-zA-Z0-9 ]+$");
+                validstring = true;
+
+                if (i.IsMatch(inputmessage))                                                                                                                    
+                {
+                    bool validshift = true;
+                    do
+                    {
+                        Console.WriteLine(" ");                                                                                                                
+                        Console.Write("Please enter shift (between 1 and 36)");                                                                                                 
+                        int shift = Convert.ToInt32(Console.ReadLine());                                                                           
+                        Console.WriteLine(" ");
+
+                        if (shift > 0 && shift < 37)                                                                                                
+                        {
+                           Console.WriteLine("Output: ");                                                                              
+                           string encryptedinput = encryptionmethod(inputmessage, shift);                                                                                  
+                           Console.WriteLine(encryptedinput);                                                                                                      
+                           validshift = true;
+                           Console.ReadLine();
+                           Console.WriteLine("Which Mini Application would you like to run next (or exit the Mini Application)");
+                           Main();
+                        }
+
+                        else
+                        {
+                            validshift = false;
+                            Console.WriteLine("Invalid shift amount");
+                        }
+                    } while (!validshift);
+                }
+
+                else                                                                                                                    
+                {
+                    Console.WriteLine("Invalid input text");       
+                    Optionthree();                                                                                                                                
+                }
+            } while (!validstring);
+        }
+
+
+/*
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+*/
+//Option Four
+
+
+        static void Optionfour()                                                                                                                     
+        {
+            bool validstring = true;
+            do
+            {
+                Console.WriteLine("Decrypt Text");
+                Console.WriteLine("------------");
+                Console.WriteLine("Please enter text to decrypt:");                                                                                                
+                string inputmessage = Console.ReadLine();                                                                                                   
+                Regex i = new Regex("^[a-zA-Z0-9 ]+$");
+                validstring = true;
+
+                if (i.IsMatch(inputmessage))                                                                                                                    
+                {
+                    bool validshift = true;
+                    do
+                    {
+                        Console.WriteLine(" ");                                                                                                                
+                        Console.Write("Please enter shift (between 1 and 36)");                                                                                                 
+                        int shift = Convert.ToInt32(Console.ReadLine());                                                                           
+                        Console.WriteLine(" ");
+
+                        if (shift > 0 && shift < 37)                                                                                                
+                        {
+                           Console.WriteLine("Output: ");                                                                              
+                           string decryptedinput = decryptionmethod(inputmessage, shift);                                                                                  
+                           Console.WriteLine(decryptedinput);                                                                                                      
+                           validshift = true;
+                           Console.ReadLine();
+                           Console.WriteLine("Which Mini Application would you like to run next (or exit the Mini Application)");
+                           Main();
+                        }
+
+                        else
+                        {
+                            validshift = false;
+                            Console.WriteLine("Invalid shift amount");
+                        }
+
+                    } while (!validshift);
+                }
+
+                else                                                                                                                    
+                {
+                    Console.WriteLine("Invalid input text");       
+                    Optionfour();                                                                                                                                
+                }
+
+            } while (!validstring);
+        }
+
+
+
+/*
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+*/
+//Functions/Methods Used in the Caeser Ciphers Encryption/Decryption that are aren't arpart of the Menu
+
+
+
+        /*Used for the Decipher*/
+
+        public static string decryptionmethod(string input, int shift)         
+        {
+            string output = string.Empty;          
+            foreach (char ch in input)                                                 
+                output += decryptionmethodstage2(ch, shift);                                               
+            output = output.ToUpper();
+            return output;                               
+        }
+
+        public static char decryptionmethodstage2(char ch, int shift)
+        {
+            char d = char.IsUpper(ch) ? 'A' : 'a';
+            return (char)(ch - shift);
+        }
+
+
+        /*Used for the Encipher*/
+
+        public static string encryptionmethod(string input, int shift)         
+        {
+            string output = string.Empty;          
+            foreach (char ch in input)                                                 
+                output += encryptionmethodstage2(ch, shift);                                               
+            output = output.ToUpper();
+            return output;                               
+        }
+
+
+        public static char encryptionmethodstage2(char ch, int shift)                                                                                           
+        {
+            char d = char.IsUpper(ch) ? 'A' : 'a';                                                                                             
+            return(char)(ch + shift);                                                                                                 
+        }
+    }
+}
+/*
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------  
+*/
