@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\2-4 Options Working" Link="2-4 Options Working" />
+    <None Include="..\Encrypt Caesar Cipher" Link="Encrypt Caesar Cipher" />
+    <None Include="..\Just Option 1 left" Link="Just Option 1 left" />
+    <None Include="..\Keep counting left" Link="Keep counting left" />
+    <None Include="..\Main" Link="Main" />
+    <None Include="..\Mini-Apps-Almost Complete" Link="Mini-Apps-Almost Complete" />
+    <None Include="..\Need to break out square root" Link="Need to break out square root" />
+    <None Include="..\Problem Here" Link="Problem Here" />
+    <None Include="..\real" Link="real" />
+    <None Include="..\Repeat asking for decimal number" Link="Repeat asking for decimal number" />
+    <None Include="..\Square Root help" Link="Square Root help" />
+  </ItemGroup>
+
+</Project>
